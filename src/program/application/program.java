@@ -28,7 +28,6 @@ public class program {
             System.out.println("Enter your email:");
             String email = sc.next();
 
-            UserLogin register = new User(username, password, email);
 
 
         }
