@@ -2,16 +2,16 @@ package program.entities;
 
 import java.util.Date;
 
-public class task {
+public class Task {
 
     private String title;
     private String description;
     private Date date;
 
-    public task() {
+    public Task() {
     }
 
-    public task(String title, String description, Date date) {
+    public Task(String title, String description, Date date) {
         this.title = title;
         this.description = description;
         this.date = date;

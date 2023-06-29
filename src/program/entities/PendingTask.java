@@ -3,17 +3,18 @@ package program.entities;
 import java.util.Date;
 import java.util.HashMap;
 
-public class pendingTask extends task{
+public class PendingTask extends Task {
 
 
-    public pendingTask() {
+    public PendingTask() {
     }
 
-    pendingTask(String title, String description, Date date) {
+    PendingTask(String title, String description, Date date) {
         super(title, description, date);
     }
 
     private HashMap<Integer,String> listPendingTask = new HashMap<>();
+                // <ID, Title>
 
     public void addPendingTask(int id, String title){
         listPendingTask.put(id, title);
@@ -32,6 +33,14 @@ public class pendingTask extends task{
     public void clearPendingTask(){
         listPendingTask.clear();
     }
+
+    public int getPendingTaskSize(){
+        return listPendingTask.size();
+    }
+
+
+
+
 
 
 

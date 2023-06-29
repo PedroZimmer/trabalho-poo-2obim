@@ -1,11 +1,8 @@
 package program.application;
 
-import program.entities.task;
+import program.entities.PendingTask;
+import program.entities.Task;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.Scanner;
 
 public class Program {
@@ -16,8 +13,7 @@ public class Program {
         System.out.println("1. Add a task");
         System.out.println("2. List pending tasks");
         System.out.println("3. List done tasks");
-        System.out.println("4. Clear tasks");
-        System.out.println("5. Exit");
+        System.out.println("4. Exit");
     }
 
     public static int option() {
@@ -26,52 +22,40 @@ public class Program {
         return option;
     }
 
-    public static void task() {
+    public static void newPendingTask() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter the title of the task");
         String title = sc.nextLine();
         System.out.println("Enter the description of the task");
         String description = sc.nextLine();
         System.out.println("Enter the date of the task");
-        String date = sc.nextLine();
-//        task task = new task(title, description, date);
+        String date = sc.nextLine(); //change to datetimeformatter
+        PendingTask task = new Task(title, description, date);
+        int size = task.getPendingTaskSize();
+        task.addPendingTask(size+1, title);
+
     }
 
+
+
     public static void main(String[] args) {
-
-
-
-        File arquivo = new File("program");
-
-        try (BufferedReader br = new BufferedReader(new FileReader(arquivo))) {
-            String linha;
-            while ((linha = br.readLine()) != null) {
-                System.out.println(linha);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
 
 
         System.out.println("WELCOME TO THE TASK MANAGER");
         menu();// call the menu method
 
         int option = option();// call the option method
-        while (option != 5) {
+        while (option != 4) {
             switch (option) {
                 case 1:
                     System.out.println("Add a task");
-                    new task();
+                    newPendingTask();
                     break;
                 case 2:
                     System.out.println("List pending tasks");
                     break;
                 case 3:
                     System.out.println("List done tasks");
-                    break;
-                case 4:
-                    System.out.println("Clear tasks");
                     break;
                 default:
                     System.out.println("Invalid option");
@@ -82,9 +66,6 @@ public class Program {
         }
 
         System.out.println("Goodbye");
-
-
-
 
 
 
