@@ -22,7 +22,9 @@ public class Program {
         return option;
     }
 
-    public static void newPendingTask() {
+    public static void askInfo() {
+
+        System.out.println("Add a task");
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter the title of the task");
         String title = sc.nextLine();
@@ -30,12 +32,16 @@ public class Program {
         String description = sc.nextLine();
         System.out.println("Enter the date of the task");
         String date = sc.nextLine(); //change to datetimeformatter
-        PendingTask task = new Task(title, description, date);
-        int size = task.getPendingTaskSize();
-        task.addPendingTask(size+1, title);
+
 
     }
 
+    private static void listPendingTask(){
+
+
+
+
+    }
 
 
     public static void main(String[] args) {
@@ -45,14 +51,23 @@ public class Program {
         menu();// call the menu method
 
         int option = option();// call the option method
+        PendingTask task = new PendingTask();
         while (option != 4) {
             switch (option) {
                 case 1:
-                    System.out.println("Add a task");
-                    newPendingTask();
+
+
+
+                    int size = task.getPendingTaskSize();
+                    task.addPendingTask(size+1, title);
+
                     break;
                 case 2:
-                    System.out.println("List pending tasks");
+
+                    System.out.println("Pending tasks: ");
+                    task.printPendingTask();
+                    System.out.println("\n");
+
                     break;
                 case 3:
                     System.out.println("List done tasks");

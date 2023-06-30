@@ -9,7 +9,7 @@ public class PendingTask extends Task {
     public PendingTask() {
     }
 
-    PendingTask(String title, String description, Date date) {
+    public PendingTask(String title, String description, String date) {
         super(title, description, date);
     }
 
@@ -36,6 +36,10 @@ public class PendingTask extends Task {
 
     public int getPendingTaskSize(){
         return listPendingTask.size();
+    }
+
+    public HashMap<Integer, String> getListPendingTask() {
+        return listPendingTask;
     }
 
 
