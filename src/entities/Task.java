@@ -1,4 +1,4 @@
-package program.entities;
+package entities;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -29,11 +29,23 @@ public class Task {
         String desc = sc.nextLine();
 //        System.out.println("Enter the date of the task");
 //        String date = sc.nextLine(); //change to datetimeformatter
-        writeTxtTaskTitle(tit);
-        writeTxtTaskDescription(desc);
         title.add(tit);
         description.add(desc);
+//        PendingTask pendingTask = new PendingTask();
+//        pendingTask.addPendingTask()
     }
+
+    public void printTask(){
+
+        for (int i = 0; i < title.size(); i++) {
+
+            System.out.println(i+1 + " - " + title.get(i));
+
+
+        }
+        System.out.println("\n");
+    }
+
 
     public void writeTxtTaskTitle(String x){
         String arquivo = "src/taskTitle.txt";
@@ -62,15 +74,42 @@ public class Task {
             e.printStackTrace();
         }
     }
-    public void readTxtTasksDescriptions(){
-        String caminhoDoArquivo = "program/taskDescription.txt";
+
+
+    //VAI COLOCAR OS TITULOS NO ARRAYLIST
+    public void readTxtTaskTitle(){
+        String caminhoDoArquivo = "src/taskTitle.txt";
         Path arquivo = Paths.get(caminhoDoArquivo);
         try{
             // Realiza a leitura de todas as linhas do arquivo
             List<String> linhas = Files.readAllLines(arquivo);
+
+            // Alternativas forEach, for com indices ( for de i)
+            for (String linha : linhas) {
+                title.add(linha);
+            }
+//            linhas.forEach(System.out::println);
+        }catch(Exception e){
+            // Se algo de errado acontecer
+            // Arquivo não encontrado
+            e.printStackTrace();
+        }
+    }
+
+    //VAI COLOCAR AS DESCRICOES NO ARRAYLIST
+    public void readTxtTaskDescription(){
+        String caminhoDoArquivo = "src/taskDescription.txt";
+        Path arquivo = Paths.get(caminhoDoArquivo);
+        try{
+            // Realiza a leitura de todas as linhas do arquivo
+            List<String> linhas = Files.readAllLines(arquivo);
+
             // Loop Funcional
             // Alternativas forEach, for com indices ( for de i)
-            linhas.forEach(System.out::println);
+            for (String linha : linhas) {
+                description.add(linha);
+            }
+//            linhas.forEach(System.out::println);
         }catch(Exception e){
             // Se algo de errado acontecer
             // Arquivo não encontrado

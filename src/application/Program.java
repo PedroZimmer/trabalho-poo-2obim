@@ -1,10 +1,9 @@
-package program.application;
+package application;
 
-import program.entities.PendingTask;
-import program.entities.Task;
+import entities.PendingTask;
+import entities.Task;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class Program {
@@ -42,36 +41,28 @@ public class Program {
 
     public static void main(String[] args) {
 
+        Task task = new Task();
 
         System.out.println("WELCOME TO THE TASK MANAGER");
         menu();// MENU
-
-        ArrayList<String> listateste = new ArrayList<>(); // create a list of strings and call the method readTxtTasksDescriptions
-
         int option = option();// OPTION
-        PendingTask task = new PendingTask(); // create a new object of PendingTask class
-        Task task1 = new Task();
-
-        listateste.add("teste1");
 
         while (option != 4) {
-            switch (option) {
+            task.readTxtTaskTitle();
 
+            task.readTxtTaskDescription();
+            System.out.println("\n");
+
+            switch (option) {
 
                 case 1:
                     System.out.println("Add a task");
-//                    task.addPendingTask();
-
-                    task1.addTask();
+                    task.addTask();
                     break;
-
 
                 case 2:
                     System.out.println("Pending tasks: ");
-
-//                    task.printPendingTask();
-                    System.out.println("\n");
-
+                    task.printTask();
                     break;
                 case 3:
                     System.out.println("List done tasks");
@@ -82,6 +73,7 @@ public class Program {
             }
             menu();// call the menu method
             option = option();// call the option method
+            System.out.println("\n");
         }
 
         System.out.println("Goodbye");
