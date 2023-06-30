@@ -2,52 +2,44 @@ package program.entities;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Scanner;
 
 public class PendingTask extends Task {
+
+
+    private HashMap<Integer,String> tasks = new HashMap<>();
 
 
     public PendingTask() {
     }
 
-    public PendingTask(String title, String description, String date) {
-        super(title, description, date);
-    }
 
-    private HashMap<Integer,String> listPendingTask = new HashMap<>();
-                // <ID, Title>
+    public void addPendingTask(){
 
-    public void addPendingTask(int id, String title){
-        listPendingTask.put(id, title);
-    }
 
-    public void printPendingTask(){
-        for (Integer key : listPendingTask.keySet()) {
-            System.out.println(key + " - " + listPendingTask.get(key));
-        }
-    }
 
-    public void removePendingTask(int id){
-        listPendingTask.remove(id);
-    }
 
-    public void clearPendingTask(){
-        listPendingTask.clear();
-    }
-
-    public int getPendingTaskSize(){
-        return listPendingTask.size();
-    }
-
-    public HashMap<Integer, String> getListPendingTask() {
-        return listPendingTask;
     }
 
 
 
-
-
-
-
+//    public void printPendingTask(){
+//        for (Integer key : listPendingTask.keySet()) {
+//            System.out.println(key + " - " + listPendingTask.get(key));
+//        }
+//    }
+//
+//    public void removePendingTask(int id){
+//        listPendingTask.remove(id);
+//    }
+//
+//    public void clearPendingTask(){
+//        listPendingTask.clear();
+//    }
+//
+//    public int getPendingTaskSize(){
+//        return listPendingTask.size();
+//    }
 
 
 }
