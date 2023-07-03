@@ -48,7 +48,7 @@ public class Task {
 
 
     public void writeTxtTaskTitle(String x){
-        String arquivo = "src/taskTitle.txt";
+        String arquivo = "src/data/taskTitle.txt";
         try {
             // Append -> Adicionar no final do arquivo
             FileWriter fw = new FileWriter(arquivo, true);
@@ -62,7 +62,7 @@ public class Task {
     }
 
     public void writeTxtTaskDescription(String x){
-        String arquivo = "src/taskDescription.txt";
+        String arquivo = "src/data/taskDescription.txt";
         try {
             // Append -> Adicionar no final do arquivo
             FileWriter fw = new FileWriter(arquivo, true);
@@ -78,7 +78,7 @@ public class Task {
 
     //VAI COLOCAR OS TITULOS NO ARRAYLIST
     public void readTxtTaskTitle(){
-        String caminhoDoArquivo = "src/taskTitle.txt";
+        String caminhoDoArquivo = "src/data/taskTitle.txt";
         Path arquivo = Paths.get(caminhoDoArquivo);
         try{
             // Realiza a leitura de todas as linhas do arquivo
@@ -98,7 +98,8 @@ public class Task {
 
     //VAI COLOCAR AS DESCRICOES NO ARRAYLIST
     public void readTxtTaskDescription(){
-        String caminhoDoArquivo = "src/taskDescription.txt";
+        String caminhoDoArquivo = "src/data/" +
+                "taskDescription.txt";
         Path arquivo = Paths.get(caminhoDoArquivo);
         try{
             // Realiza a leitura de todas as linhas do arquivo

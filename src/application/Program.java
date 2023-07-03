@@ -42,6 +42,7 @@ public class Program {
                 case 1:
                     System.out.println("Add a task");
                     task.addTask();
+
                     break;
 
                 case 2:
