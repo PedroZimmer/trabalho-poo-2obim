@@ -1,5 +1,7 @@
 package entities;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -20,30 +22,36 @@ public class PendingTask extends Task {
         this.pending = pending;
     }
 
-    //VAI COLOCAR AS TAREFAS PENDENTES NO ARRAYLIST
-    public void readTxtPendingTask() {
-        String caminhoDoArquivo = "src/data/" +
-                "pendingTask.txt";
-        Path arquivo = Paths.get(caminhoDoArquivo);
-        try{
-            // Realiza a leitura de todas as linhas do arquivo
-            List<String> linhas = Files.readAllLines(arquivo);
 
-            // Loop Funcional
-            // Alternativas forEach, for com indices ( for de i)
-            for (String linha : linhas) {
-                Integer numero = Integer.parseInt(linha);
-
-                // Adicionar o número à lista de tarefas pendentes
-                pending.add(numero);
-            }
-//            linhas.forEach(System.out::println);
-        }catch(Exception e){
-            // Se algo de errado acontecer
-            // Arquivo não encontrado
-            e.printStackTrace();
+    public void printPendingTask(ArrayList<String> title) {
+        System.out.println("Tarefas pendentes: ");
+        for (int i = 0; i < pending.size(); i++) {
+            System.out.println(pending.get(i) + " - " + title.get(pending.get(i)-1));
         }
+
     }
+
+//    public void writePendingTask() {
+//        String arquivo = "src/data/pendingTask.txt";
+//        try {
+//            // Append -> Adicionar no final do arquivo
+//            for (int i = initialSize; i < title.size(); i++) {
+//                FileWriter fw = new FileWriter(arquivo, true); // se tirar o append
+//                BufferedWriter bw = new BufferedWriter(fw);
+//                bw.write(description.get(i));
+//                bw.newLine();
+//                bw.close();
+//            }
+//        }catch (Exception e){
+//            e.printStackTrace();
+//        }
+//    }
+
+
+
+
+
+
 
 
     public String toString() {

@@ -33,6 +33,7 @@ public class Program {
         menu();// MENU
 
         task.readTxtTaskTitle();
+        int initialSize = task.getTitle().size();
         task.readTxtTaskDescription();
         task.readTxtPendingTask();
         task.readTxtCompletedTask();
@@ -60,11 +61,12 @@ public class Program {
 
                 case 2:
                     System.out.println("Pending tasks: ");
-                    task.printTask();
+                    pendingTask.printPendingTask(task.getTitle());
                     break;
 
                 case 3:
                     System.out.println("List done tasks");
+                    completedTask.printCompletedTask(task.getTitle());
                     break;
 
                 default:
@@ -77,6 +79,9 @@ public class Program {
             option = option();// call the option method
             System.out.println("\n");
         }
+
+        task.writeTxtTaskTitle(initialSize);
+        task.writeTxtTaskDescription(initialSize);
 
         System.out.println("Goodbye");
 

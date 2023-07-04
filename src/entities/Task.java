@@ -35,6 +35,7 @@ public class Task {
         return completed;
     }
 
+
     public void addTask(){
 
         Scanner sc = new Scanner(System.in);
@@ -62,29 +63,33 @@ public class Task {
         System.out.println("\n");
     }
 
-    public void writeTxtTaskTitle(String x){
+    public void writeTxtTaskTitle(int initialSize){
         String arquivo = "src/data/taskTitle.txt";
         try {
             // Append -> Adicionar no final do arquivo
-            FileWriter fw = new FileWriter(arquivo, true);
-            BufferedWriter bw = new BufferedWriter(fw);
-            bw.write(x);
-            bw.newLine();
-            bw.close();
+            for (int i = initialSize; i < title.size(); i++) {
+                FileWriter fw = new FileWriter(arquivo, true); // se tirar o append
+                BufferedWriter bw = new BufferedWriter(fw);
+                bw.write(title.get(i));
+                bw.newLine();
+                bw.close();
+            }
         }catch (Exception e){
             e.printStackTrace();
         }
     }
 
-    public void writeTxtTaskDescription(String x){
+    public void writeTxtTaskDescription(int initialSize){
         String arquivo = "src/data/taskDescription.txt";
         try {
             // Append -> Adicionar no final do arquivo
-            FileWriter fw = new FileWriter(arquivo, true);
-            BufferedWriter bw = new BufferedWriter(fw);
-            bw.write(x);
-            bw.newLine();
-            bw.close();
+            for (int i = initialSize; i < title.size(); i++) {
+                FileWriter fw = new FileWriter(arquivo, true); // se tirar o append
+                BufferedWriter bw = new BufferedWriter(fw);
+                bw.write(description.get(i));
+                bw.newLine();
+                bw.close();
+            }
         }catch (Exception e){
             e.printStackTrace();
         }
