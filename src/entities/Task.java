@@ -10,27 +10,43 @@ import java.util.List;
 
 public class Task {
 
-    public ArrayList<String> title = new ArrayList<>() {};
+    private ArrayList<String> title = new ArrayList<>() {};
     private ArrayList<String> description = new ArrayList<>();
-    private String date;
-    private HashMap<Integer,String> tasks = new HashMap<>();
+    private ArrayList<Integer> pending = new ArrayList<>();
+    private ArrayList<Integer> completed = new ArrayList<>();
 
 
     public Task() {
     }
 
+    public ArrayList<String> getTitle() {
+        return title;
+    }
+
+    public ArrayList<String> getDescription() {
+        return description;
+    }
+
+    public ArrayList<Integer> getPending() {
+        return pending;
+    }
+
+    public ArrayList<Integer> getCompleted() {
+        return completed;
+    }
 
     public void addTask(){
+
         Scanner sc = new Scanner(System.in);
 
         System.out.println("Enter the title of the task");
         String tit = sc.nextLine();
+        title.add(tit);
+
         System.out.println("Enter the description of the task");
         String desc = sc.nextLine();
-//        System.out.println("Enter the date of the task");
-//        String date = sc.nextLine(); //change to datetimeformatter
-        title.add(tit);
         description.add(desc);
+
 //        PendingTask pendingTask = new PendingTask();
 //        pendingTask.addPendingTask()
     }
@@ -45,7 +61,6 @@ public class Task {
         }
         System.out.println("\n");
     }
-
 
     public void writeTxtTaskTitle(String x){
         String arquivo = "src/data/taskTitle.txt";
@@ -74,7 +89,6 @@ public class Task {
             e.printStackTrace();
         }
     }
-
 
     //VAI COLOCAR OS TITULOS NO ARRAYLIST
     public void readTxtTaskTitle(){
@@ -109,6 +123,56 @@ public class Task {
             // Alternativas forEach, for com indices ( for de i)
             for (String linha : linhas) {
                 description.add(linha);
+            }
+//            linhas.forEach(System.out::println);
+        }catch(Exception e){
+            // Se algo de errado acontecer
+            // Arquivo não encontrado
+            e.printStackTrace();
+        }
+    }
+
+    //VAI COLOCAR AS TAREFAS PENDENTES NO ARRAYLIST
+    public void readTxtPendingTask() {
+        String caminhoDoArquivo = "src/data/" +
+                "pendingTask.txt";
+        Path arquivo = Paths.get(caminhoDoArquivo);
+        try{
+            // Realiza a leitura de todas as linhas do arquivo
+            List<String> linhas = Files.readAllLines(arquivo);
+
+            // Loop Funcional
+            // Alternativas forEach, for com indices ( for de i)
+            for (String linha : linhas) {
+                Integer numero = Integer.parseInt(linha);
+
+                // Adicionar o número à lista de tarefas pendentes
+                pending.add(numero);
+            }
+//            linhas.forEach(System.out::println);
+        }catch(Exception e){
+            // Se algo de errado acontecer
+            // Arquivo não encontrado
+            e.printStackTrace();
+        }
+    }
+
+    //VAI COLOCAR AS TAREFAS COMPLETADAS NO ARRAYLIST
+    public void readTxtCompletedTask() {
+        String caminhoDoArquivo = "src/data/" +
+                "completedTask.txt";
+        Path arquivo = Paths.get(caminhoDoArquivo);
+        try{
+            // Realiza a leitura de todas as linhas do arquivo
+            List<String> linhas = Files.readAllLines(arquivo);
+
+            // Loop Funcional
+            // Alternativas forEach, for com indices ( for de i)
+            for (String linha : linhas) {
+                Integer numero = Integer.parseInt(linha);
+
+                // Adicionar o número à lista de tarefas pendentes
+                completed.add(numero);
             }
 //            linhas.forEach(System.out::println);
         }catch(Exception e){
