@@ -1,5 +1,6 @@
 package application;
 
+import entities.CompletedTask;
 import entities.PendingTask;
 import entities.Task;
 
@@ -30,10 +31,22 @@ public class Program {
 
         System.out.println("WELCOME TO THE TASK MANAGER");
         menu();// MENU
-        int option = option();// OPTION
 
         task.readTxtTaskTitle();
         task.readTxtTaskDescription();
+        task.readTxtPendingTask();
+        task.readTxtCompletedTask();
+
+        PendingTask pendingTask = new PendingTask(task.getPending());
+        CompletedTask completedTask = new CompletedTask(task.getCompleted());
+
+        System.out.println("PENDINGS TASK:" + pendingTask);
+
+        System.out.println("COMPLETED TASK:" + completedTask);
+
+
+        int option = option();// OPTION
+
 
         while (option != 4) {
 
