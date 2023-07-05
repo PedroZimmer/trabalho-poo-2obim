@@ -11,11 +11,13 @@ public class Program {
 
 
     public static void menu() {
-
+        System.out.println("------------------------");
         System.out.println("1. Add a task");
         System.out.println("2. List pending tasks");
         System.out.println("3. List done tasks");
         System.out.println("4. Exit");
+        System.out.println("------------------------");
+
     }
 
     public static int option() {
@@ -24,13 +26,20 @@ public class Program {
         return option;
     }
 
+    public static void seeDescription(ArrayList<String> description, ArrayList<String> title) {
+        System.out.println("Select a task to see the description");
+        Scanner sc = new Scanner(System.in);
+        int option = sc.nextInt();
+        System.out.println(title.get(option-1) + ":\n" + description.get(option - 1));
+
+    }
 
     public static void main(String[] args) {
 
         Task task = new Task();
 
         System.out.println("WELCOME TO THE TASK MANAGER");
-        menu();// MENU
+        menu();
 
         task.readTxtTaskTitle();
         int initialSize = task.getTitle().size();
@@ -41,13 +50,7 @@ public class Program {
         PendingTask pendingTask = new PendingTask(task.getPending());
         CompletedTask completedTask = new CompletedTask(task.getCompleted());
 
-        System.out.println("PENDINGS TASK:" + pendingTask);
-
-        System.out.println("COMPLETED TASK:" + completedTask);
-
-
-        int option = option();// OPTION
-
+        int option = option();
 
         while (option != 4) {
 
@@ -60,13 +63,31 @@ public class Program {
                     break;
 
                 case 2:
-                    System.out.println("Pending tasks: ");
+                    //LIST PENDING TASK
                     pendingTask.printPendingTask(task.getTitle());
+
+                    if (pendingTask.getPending().size() != 0) {
+                        seeDescription(task.getDescription(), task.getTitle());
+                        System.out.println("Do you want to complete a task? (y/n)");
+                        Scanner sc = new Scanner(System.in);
+                        String answer = sc.nextLine();
+                        if (answer.equals("y")) {
+                            completedTask.setCompleted(pendingTask.completeTask(completedTask.getCompleted()));
+                        } else if (answer.equals("n")) {
+                            System.out.println("Ok");
+                        } else {
+                            System.out.println("Invalid option");
+                        }
+
+                    }
+
                     break;
 
                 case 3:
-                    System.out.println("List done tasks");
+
                     completedTask.printCompletedTask(task.getTitle());
+                    seeDescription(task.getDescription(), task.getTitle());
+
                     break;
 
                 default:
@@ -82,6 +103,8 @@ public class Program {
 
         task.writeTxtTaskTitle(initialSize);
         task.writeTxtTaskDescription(initialSize);
+        pendingTask.writeTxtPendingTask();
+        completedTask.writeTxtCompletedTask();
 
         System.out.println("Goodbye");
 

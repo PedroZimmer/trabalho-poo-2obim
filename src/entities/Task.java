@@ -23,6 +23,10 @@ public class Task {
         return title;
     }
 
+    public int getTitleSize() {
+        return title.size();
+    }
+
     public ArrayList<String> getDescription() {
         return description;
     }
@@ -47,28 +51,15 @@ public class Task {
         System.out.println("Enter the description of the task");
         String desc = sc.nextLine();
         description.add(desc);
-
-//        PendingTask pendingTask = new PendingTask();
-//        pendingTask.addPendingTask()
+        pending.add(getTitleSize());
     }
 
-    public void printTask(){
-
-        for (int i = 0; i < title.size(); i++) {
-
-            System.out.println(i+1 + " - " + title.get(i));
-
-
-        }
-        System.out.println("\n");
-    }
 
     public void writeTxtTaskTitle(int initialSize){
         String arquivo = "src/data/taskTitle.txt";
         try {
-            // Append -> Adicionar no final do arquivo
             for (int i = initialSize; i < title.size(); i++) {
-                FileWriter fw = new FileWriter(arquivo, true); // se tirar o append
+                FileWriter fw = new FileWriter(arquivo, true);
                 BufferedWriter bw = new BufferedWriter(fw);
                 bw.write(title.get(i));
                 bw.newLine();
@@ -82,9 +73,8 @@ public class Task {
     public void writeTxtTaskDescription(int initialSize){
         String arquivo = "src/data/taskDescription.txt";
         try {
-            // Append -> Adicionar no final do arquivo
             for (int i = initialSize; i < title.size(); i++) {
-                FileWriter fw = new FileWriter(arquivo, true); // se tirar o append
+                FileWriter fw = new FileWriter(arquivo, true);
                 BufferedWriter bw = new BufferedWriter(fw);
                 bw.write(description.get(i));
                 bw.newLine();
@@ -100,17 +90,11 @@ public class Task {
         String caminhoDoArquivo = "src/data/taskTitle.txt";
         Path arquivo = Paths.get(caminhoDoArquivo);
         try{
-            // Realiza a leitura de todas as linhas do arquivo
             List<String> linhas = Files.readAllLines(arquivo);
-
-            // Alternativas forEach, for com indices ( for de i)
             for (String linha : linhas) {
                 title.add(linha);
             }
-//            linhas.forEach(System.out::println);
         }catch(Exception e){
-            // Se algo de errado acontecer
-            // Arquivo não encontrado
             e.printStackTrace();
         }
     }
@@ -121,18 +105,11 @@ public class Task {
                 "taskDescription.txt";
         Path arquivo = Paths.get(caminhoDoArquivo);
         try{
-            // Realiza a leitura de todas as linhas do arquivo
             List<String> linhas = Files.readAllLines(arquivo);
-
-            // Loop Funcional
-            // Alternativas forEach, for com indices ( for de i)
             for (String linha : linhas) {
                 description.add(linha);
             }
-//            linhas.forEach(System.out::println);
         }catch(Exception e){
-            // Se algo de errado acontecer
-            // Arquivo não encontrado
             e.printStackTrace();
         }
     }
@@ -143,21 +120,12 @@ public class Task {
                 "pendingTask.txt";
         Path arquivo = Paths.get(caminhoDoArquivo);
         try{
-            // Realiza a leitura de todas as linhas do arquivo
             List<String> linhas = Files.readAllLines(arquivo);
-
-            // Loop Funcional
-            // Alternativas forEach, for com indices ( for de i)
             for (String linha : linhas) {
                 Integer numero = Integer.parseInt(linha);
-
-                // Adicionar o número à lista de tarefas pendentes
                 pending.add(numero);
             }
-//            linhas.forEach(System.out::println);
         }catch(Exception e){
-            // Se algo de errado acontecer
-            // Arquivo não encontrado
             e.printStackTrace();
         }
     }
@@ -168,24 +136,13 @@ public class Task {
                 "completedTask.txt";
         Path arquivo = Paths.get(caminhoDoArquivo);
         try{
-            // Realiza a leitura de todas as linhas do arquivo
             List<String> linhas = Files.readAllLines(arquivo);
-
-            // Loop Funcional
-            // Alternativas forEach, for com indices ( for de i)
             for (String linha : linhas) {
                 Integer numero = Integer.parseInt(linha);
-
-                // Adicionar o número à lista de tarefas pendentes
                 completed.add(numero);
             }
-//            linhas.forEach(System.out::println);
         }catch(Exception e){
-            // Se algo de errado acontecer
-            // Arquivo não encontrado
             e.printStackTrace();
         }
     }
-
-
 }
